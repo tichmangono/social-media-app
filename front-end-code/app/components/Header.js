@@ -4,7 +4,7 @@ import HeaderLoggedIn from "./HeaderLoggedIn"
 import HeaderLoggedOut from "./HeaderLoggedOut"
 
 function Header() {
-  const [loggedIn, setLoggedIn] = useState()
+  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("smappToken")))
 
   return (
     <header className="header-bar bg-primary mb-3">

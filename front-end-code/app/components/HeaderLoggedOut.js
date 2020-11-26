@@ -11,7 +11,9 @@ function HeaderLoggedOut(props) {
     try {
       const response = await Axios.post("http://localhost:8080/login", { username, password })
       if (response.data) {
-        console.log(response.data)
+        localStorage.setItem("smappToken", response.data.token)
+        localStorage.setItem("smappUsername", response.data.username)
+        localStorage.setItem("smappAvatar", response.data.avatar)
         props.setLoggedIn(true)
       } else {
         console.log("Incorrect username/password")
