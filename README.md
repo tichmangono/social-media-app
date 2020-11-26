@@ -2,6 +2,6 @@
 Making a basic social media app with user admin functions, follow/unfollow, create/delete posts etc.
 
 # Uses
-- Front-end: React, JS, html, css
-- Back-end: MongoDB
-- Middleware: Axios for connecting front and backend 
+- Front-end: **Javascript** and **React** library, **HTML**, **CSS**
+- Back-end: **MongoDB**
+- Middleware: **Axios** for connecting front and backend 
