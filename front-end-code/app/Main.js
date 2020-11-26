@@ -1,22 +1,25 @@
-import React from "react"
+import React, { useState } from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 // components
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import Home from "./components/Home"
 import HomeGuest from "./components/HomeGuest"
 import About from "./components/About"
 import Terms from "./components/Terms"
 
 function Main() {
+  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("smappToken")))
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
       <Switch>
         <Route path="/" exact>
-          <HomeGuest />
+          {loggedIn ? <Home /> : <HomeGuest />}
         </Route>
         <Route path="/about-us">
           <About />
