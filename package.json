@@ -1,7 +1,7 @@
 {
   "name": "social-media-app",
   "version": "1.0.0",
-  "description": "social media app with basic functions - user admn, follow, posts etc.",
+  "description": "Making a mock basic social media app with user admin functions, follow/unfollow, create/delete posts etc.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/tichmangono/social-media-app.git"
   },
-  "author": "Tichakunda Mangono",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tichmangono/social-media-app/issues"
@@ -18,13 +19,6 @@
   "homepage": "https://github.com/tichmangono/social-media-app#readme",
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/node": "^7.12.6",
-    "webpack": "^5.6.0",
-    "webpack-cli": "^4.2.0"
+    "react-dom": "^17.0.1"
   }
 }
