@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Axios from "axios"
 Axios.defaults.baseURL = "http://localhost:8080"
+import { useImmerReducer } from "use-immer"
 
 // Context components
 import StateContext from "./StateContext"
@@ -21,21 +22,26 @@ import FlashMessages from "./components/FlashMessages"
 
 function Main() {
   const initialState = {
-    loggedIn: false, //Boolean(localStorage.getItem("smappToken"))
+    loggedIn: Boolean(localStorage.getItem("smappToken")),
     flashMesages: [],
   }
 
-  function ourReducer(state, action) {
+  function ourReducer(draft, action) {
     switch (action.type) {
       case "login":
-        return { loggedIn: true, flashMesages: state.flashMesages }
+        //return { loggedIn: true, flashMesages: state.flashMesages }
+        draft.loggedIn = true
+        return
       case "logout":
-        return { loggedIn: false, flashMesages: state.flashMesages }
+        //return { loggedIn: false, flashMesages: state.flashMesages }
+        draft.loggedIn = false
+        return
       case "flashMessage":
-        return { loggedIn: state.loggedIn, flashMesages: state.flashMesages.concat(action.value) }
+        //return { loggedIn: state.loggedIn, flashMesages: state.flashMesages.concat(action.value) }
+        draft.flashMesages.push(action.value)
     }
   }
-  const [state, dispatch] = useReducer(ourReducer, initialState)
+  const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
   return (
     <StateContext.Provider value={state}>

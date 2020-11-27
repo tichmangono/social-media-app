@@ -24,9 +24,11 @@
     "@babel/preset-react": "^7.12.7",
     "axios": "^0.21.0",
     "babel-loader": "^8.2.1",
+    "immer": "^8.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "use-immer": "^0.4.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.5.1"
