@@ -14,7 +14,7 @@ function HeaderLoggedOut(props) {
     try {
       const response = await Axios.post("/login", { username, password })
       if (response.data) {
-       appDispatch({ type: "login", data: response.data })
+        appDispatch({ type: "login", data: response.data })
       } else {
         console.log("Incorrect username/password")
       }

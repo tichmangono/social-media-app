@@ -16,6 +16,7 @@ import Home from "./components/Home"
 import HomeGuest from "./components/HomeGuest"
 import About from "./components/About"
 import Terms from "./components/Terms"
+import Profile from "./components/Profile"
 import CreatePost from "./components/CreatePost"
 import ViewSinglePost from "./components/ViewSinglePost"
 import FlashMessages from "./components/FlashMessages"
@@ -69,9 +70,13 @@ function Main() {
           <Header />
 
           <Switch>
+            <Route path="/profile/:username">
+              <Profile />
+            </Route>
             <Route path="/" exact>
               {state.loggedIn ? <Home /> : <HomeGuest />}
             </Route>
+
             <Route path="/create-post">
               <CreatePost />
             </Route>
