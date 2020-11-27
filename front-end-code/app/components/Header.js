@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import HeaderLoggedIn from "./HeaderLoggedIn"
 import HeaderLoggedOut from "./HeaderLoggedOut"
-import ExampleContext from "../ExampleContext"
+import StateContext from "../StateContext"
 
 function Header(props) {
-  const { loggedIn } = useContext(ExampleContext)
+  const appState = useContext(StateContext)
 
   return (
     <header className="header-bar bg-primary mb-3">
@@ -16,7 +16,7 @@ function Header(props) {
             SocialMediaApp{" "}
           </Link>
         </h4>
-        {loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
+        {appState.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
       </div>
     </header>
   )
