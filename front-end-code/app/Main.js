@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react"
+import React, { useState, useReducer, useEffect } from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Axios from "axios"
@@ -24,6 +24,11 @@ function Main() {
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("smappToken")),
     flashMesages: [],
+    user: {
+      username: localStorage.getItem("smappUsername"),
+      avatar: localStorage.getItem("smappAvatar"),
+      token: localStorage.getItem("smappToken"),
+    },
   }
 
   function ourReducer(draft, action) {
@@ -31,6 +36,7 @@ function Main() {
       case "login":
         //return { loggedIn: true, flashMesages: state.flashMesages }
         draft.loggedIn = true
+        draft.user = action.data
         return
       case "logout":
         //return { loggedIn: false, flashMesages: state.flashMesages }
@@ -42,6 +48,18 @@ function Main() {
     }
   }
   const [state, dispatch] = useImmerReducer(ourReducer, initialState)
+
+  useEffect(() => {
+    if (state.loggedIn) {
+      localStorage.setItem("smappToken", state.user.token)
+      localStorage.setItem("smappUsername", state.user.username)
+      localStorage.setItem("smappAvatar", state.user.avatar)
+    } else {
+      localStorage.removeItem("smappToken")
+      localStorage.removeItem("smappUsername")
+      localStorage.removeItem("smappAvatar")
+    }
+  }, [state.loggedIn])
 
   return (
     <StateContext.Provider value={state}>
