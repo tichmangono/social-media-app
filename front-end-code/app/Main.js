@@ -13,34 +13,44 @@ import About from "./components/About"
 import Terms from "./components/Terms"
 import CreatePost from "./components/CreatePost"
 import ViewSinglePost from "./components/ViewSinglePost"
+import FlashMessages from "./components/FlashMessages"
+import ExampleContext from "./ExampleContext"
 
 function Main() {
   const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("smappToken")))
+  const [flashMesages, setFlashMessages] = useState([])
+
+  function addFlashMessage(msg) {
+    setFlashMessages((prev) => prev.concat(msg))
+  }
 
   return (
-    <BrowserRouter>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+    <ExampleContext.Provider value={{ addFlashMessage, loggedIn, setLoggedIn }}>
+      <BrowserRouter>
+        <FlashMessages messages={flashMesages} />
+        <Header />
 
-      <Switch>
-        <Route path="/" exact>
-          {loggedIn ? <Home /> : <HomeGuest />}
-        </Route>
-        <Route path="/create-post">
-          <CreatePost />
-        </Route>
-        <Route path="/post/:id">
-          <ViewSinglePost />
-        </Route>
-        <Route path="/about-us">
-          <About />
-        </Route>
-        <Route path="/terms">
-          <Terms />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route path="/" exact>
+            {loggedIn ? <Home /> : <HomeGuest />}
+          </Route>
+          <Route path="/create-post">
+            <CreatePost />
+          </Route>
+          <Route path="/post/:id">
+            <ViewSinglePost />
+          </Route>
+          <Route path="/about-us">
+            <About />
+          </Route>
+          <Route path="/terms">
+            <Terms />
+          </Route>
+        </Switch>
 
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </ExampleContext.Provider>
   )
 }
 

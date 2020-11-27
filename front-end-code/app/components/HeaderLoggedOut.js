@@ -1,10 +1,13 @@
 import Axios from "axios"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
+import ExampleContext from "../ExampleContext"
+
 //
 
 function HeaderLoggedOut(props) {
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
+  const { setLoggedIn } = useContext(ExampleContext)
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -14,7 +17,7 @@ function HeaderLoggedOut(props) {
         localStorage.setItem("smappToken", response.data.token)
         localStorage.setItem("smappUsername", response.data.username)
         localStorage.setItem("smappAvatar", response.data.avatar)
-        props.setLoggedIn(true)
+        setLoggedIn(true)
       } else {
         console.log("Incorrect username/password")
       }
