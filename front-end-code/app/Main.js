@@ -76,7 +76,6 @@ function Main() {
             <Route path="/" exact>
               {state.loggedIn ? <Home /> : <HomeGuest />}
             </Route>
-
             <Route path="/create-post">
               <CreatePost />
             </Route>
