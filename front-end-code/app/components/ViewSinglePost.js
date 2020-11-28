@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Page from "./Page"
 import { useParams, Link } from "react-router-dom"
+import ReactMarkdown from "react-markdown"
 import Axios from "axios"
 
 function ViewSinglePost() {
@@ -55,7 +56,7 @@ function ViewSinglePost() {
       </p>
 
       <div className="body-content">
-        <p>{post.body}</p>
+        <ReactMarkdown source={post.body} />
       </div>
     </Page>
   )
